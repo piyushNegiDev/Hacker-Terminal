@@ -56,20 +56,20 @@ async function fifthMsg() {
 async function calling() {
   let html = document.querySelector(".container");
 
-  let firstmsg = await firstMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${firstmsg}</p>`);
+  let firstP = await firstMsg();
+  html.insertAdjacentHTML("beforeend", `<p>${firstP}</p>`);
 
-  let secondmsg = await secondMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${secondmsg}</p>`);
+  let secondP = await secondMsg();
+  html.insertAdjacentHTML("beforeend", `<p>${secondP}</p>`);
 
-  let thirdmsg = await thirdMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${thirdmsg}</p>`);
+  let thirdP = await thirdMsg();
+  html.insertAdjacentHTML("beforeend", `<p>${thirdP}</p>`);
 
-  let fourthmsg = await fourthMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${fourthmsg}</p>`);
+  let fourthP = await fourthMsg();
+  html.insertAdjacentHTML("beforeend", `<p>${fourthP}</p>`);
 
-  let fifthmsg = await fifthMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${fifthmsg}</p>`);
+  let fifthP = await fifthMsg();
+  html.insertAdjacentHTML("beforeend", `<p>${fifthP}</p>`);
 }
 
 calling();
