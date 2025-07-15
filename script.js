@@ -1,75 +1,82 @@
-let random;
-let timing;
+// Utility function to generate a random delay
+function getRandomDelay() {
+  return (Math.floor(Math.random() * 7) + 1) * 1000;
+}
 
+// Individual message functions
 async function firstMsg() {
-  random = Math.floor(Math.random() * 7) + 1;
-  timing = random * 1000;
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Initializing Hacking...");
-    }, timing);
+      resolve("Initializing Hacking");
+    }, getRandomDelay());
   });
 }
+
 async function secondMsg() {
-  random = Math.floor(Math.random() * 7) + 1;
-  timing = random * 1000;
-
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Reading your Files...");
-    }, timing);
+      resolve("Reading your Files");
+    }, getRandomDelay());
   });
 }
-async function thirdMsg() {
-  random = Math.floor(Math.random() * 7) + 1;
-  timing = random * 1000;
 
+async function thirdMsg() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Password files Detected...");
-    }, timing);
+      resolve("Password files Detected");
+    }, getRandomDelay());
   });
 }
 
 async function fourthMsg() {
-  random = Math.floor(Math.random() * 7) + 1;
-  timing = random * 1000;
-
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Sending all passwords and personal files to server...");
-    }, timing);
+      resolve("Sending passwords to server");
+    }, getRandomDelay());
   });
 }
 
 async function fifthMsg() {
-  random = Math.floor(Math.random() * 7) + 1;
-  timing = random * 1000;
-
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Cleaing up...");
-    }, timing);
+      resolve("Cleaning up");
+    }, getRandomDelay());
   });
 }
 
-async function calling() {
-  let html = document.querySelector(".container");
+// Typing effect function
+async function typeWriterEffect(msg) {
+  const html = document.querySelector(".container");
 
-  let firstP = await firstMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${firstP}</p>`);
+  const msgBox = document.createElement("div");
+  msgBox.classList.add("msg");
 
-  let secondP = await secondMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${secondP}</p>`);
+  const p = document.createElement("p");
+  msgBox.appendChild(p);
 
-  let thirdP = await thirdMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${thirdP}</p>`);
+  // Add 3 blinking dots
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("first");
+    msgBox.appendChild(dot);
+  }
 
-  let fourthP = await fourthMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${fourthP}</p>`);
+  html.appendChild(msgBox);
 
-  let fifthP = await fifthMsg();
-  html.insertAdjacentHTML("beforeend", `<p>${fifthP}</p>`);
+  // Letter-by-letter typing
+  for (let i = 0; i < msg.length; i++) {
+    p.textContent += msg[i];
+    await new Promise((res) => setTimeout(res, 50)); // adjust speed here
+  }
 }
 
-calling();
+// Master calling function
+async function calling() {
+  await typeWriterEffect(await firstMsg());
+  await typeWriterEffect(await secondMsg());
+  await typeWriterEffect(await thirdMsg());
+  await typeWriterEffect(await fourthMsg());
+  await typeWriterEffect(await fifthMsg());
+}
+
+calling(); // Start on load
